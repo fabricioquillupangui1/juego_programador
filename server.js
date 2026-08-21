@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Importar rutas API de la aplicación
-import authRoutes from './routes/auth.routes.js';
+import authRoutes from './auth.routes.js'; // ✅ Lo busca directo al lado del server.js
 
 // Cargar variables de entorno desde el archivo .env
 dotenv.config();
