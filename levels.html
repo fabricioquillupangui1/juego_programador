@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Zero | Selector de Niveles</title>
+  <!-- Estilos del Sistema -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/game.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================
+        AJUSTES VISUALES Y COLORES PERSONALIZADOS
+        ========================================== */
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      min-height: 100vh !important;
+      background: url('https://i.postimg.cc/Y2bScdtj/Chat-GPT-Image-17-ago-2026-04-42-38-p-m.png') no-repeat center center fixed !important;
+      background-size: cover !important;
+    }
+
+    .game-container {
+      background: transparent !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100vh !important;
+      box-sizing: border-box !important;
+    }
+
+    .welcome-banner {
+      text-align: center !important;
+      margin-bottom: 25px;
+    }
+
+    .welcome-banner h1, 
+    .welcome-banner p {
+      text-align: center !important;
+    }
+
+    .modules-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px !important;
+    }
+
+    @media (max-width: 768px) {
+      .modules-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    .player-stats .stat-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .player-stats .stat-label {
+      font-size: 0.85rem !important;
+      font-weight: 700;
+      color: #00f3ff;
+      letter-spacing: 1px;
+    }
+
+    .player-stats .stat-value {
+      font-size: 2.2rem !important;
+      font-weight: 900 !important;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
+      line-height: 1.1;
+    }
+
+    /* Colores Neón Personalizados por Módulo */
+    .module-card[data-level="level1_ui.json"] {
+      border: 2px solid #00f3ff !important;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.25) !important;
+    }
+    .module-card[data-level="level1_ui.json"] h3 { color: #00f3ff !important; }
+
+    .module-card[data-level="level2_logic.json"] {
+      border: 2px solid #00ff66 !important;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.25) !important;
+    }
+    .module-card[data-level="level2_logic.json"] h3 { color: #00ff66 !important; }
+
+    .module-card[data-level="level3_sql.json"] {
+      border: 2px solid #ffaa00 !important;
+      box-shadow: 0 0 15px rgba(255, 170, 0, 0.25) !important;
+    }
+    .module-card[data-level="level3_sql.json"] h3 { color: #ffaa00 !important; }
+
+    .module-card[data-level="level4_devops.json"] {
+      border: 2px solid #ff00ff !important;
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.25) !important;
+    }
+    .module-card[data-level="level4_devops.json"] h3 { color: #ff00ff !important; }
+
+    /* Estado Bloqueado / Completado para Tarjetas y Botones */
+    .module-card.locked {
+      opacity: 0.55;
+      border: 2px solid #555 !important;
+      box-shadow: none !important;
+      cursor: not-allowed !important;
+    }
+    .module-card.locked h3 { color: #888 !important; }
+    
+    .cyber-btn.locked-btn {
+      background: rgba(40, 40, 40, 0.8) !important;
+      border-color: #555 !important;
+      color: #888 !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 8, 18, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999 !important;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .modal-card {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(10, 15, 30, 0.95);
+      border: 2px solid #ff0055;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 35px rgba(255, 0, 85, 0.45), inset 0 0 15px rgba(255, 0, 85, 0.15);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      z-index: 1000000;
+    }
+
+    .modal-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .warning-icon {
+      font-size: 2.8rem;
+      text-shadow: 0 0 15px rgba(255, 0, 85, 0.8);
+    }
+
+    .modal-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #ff0055;
+      font-size: 1.6rem;
+      margin: 0;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+    }
+
+    .modal-quote {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      font-style: italic;
+      text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+    }
+
+    .modal-subtext {
+      font-family: 'Rajdhani', sans-serif;
+      color: #a0a0a0;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .modal-accept-btn {
+      border-color: #ff0055 !important;
+      color: #ff0055 !important;
+    }
+
+    .modal-accept-btn:hover {
+      background: #ff0055 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.8) !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .module-card p {
+      font-size: 1.4rem !important;
+      line-height: 1.5 !important;
+      color: #e0e6ed !important;
+      font-weight: 500 !important;
+      margin-top: 8px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <!-- HUD Header -->
+    <header class="player-bar glass-card">
+      <div class="player-profile">
+        <div class="avatar-frame">
+          <img id="user-avatar" src="assets/avatars/byte_happy.png" alt="Avatar del Jugador" class="avatar-img" onerror="this.src='https://i.postimg.cc/JzxdvsKH/pixelcut-export.png';">
+        </div>
+        <div class="player-info">
+          <h2 id="user-nickname">Cargando...</h2>
+          <span class="status-tag">SISTEMA ACTIVO</span>
+        </div>
+      </div>
+
+      <div class="player-stats">
+        <div class="stat-box">
+          <span class="stat-label">PUNTAJE TOTAL</span>
+          <span id="user-score" class="stat-value">0</span>
+        </div>
+        <!-- Botones de Control -->
+         
+        <button id="reset-btn" class="cyber-btn-alt">REINICIAR</button>
+        <button id="logout-btn" class="cyber-btn-alt">SALIR</button>
+      </div>
+    </header>
+
+    <!-- Panel de Bienvenida y Selección -->
+    <main class="game-content glass-card">
+      <div class="welcome-banner">
+        <h1>PANEL DE EVALUACIÓN <span class="highlight">CÓDIGO ZERO</span></h1>
+        <p>Selecciona un módulo de entrenamiento para iniciar los minijuegos interactivos.</p>
+      </div>
+
+      <!-- Grid de Módulos (Niveles en formato 2x2) -->
+      <div class="modules-grid">
+        <!-- Nivel 1 -->
+        <div class="module-card" data-level="level1_ui.json" data-required="0">
+          <div>
+            <h3>MÓDULO 01: DISEÑO WEB Y MÓVIL</h3>
+            <p>Conviértete en el arquitecto visual de la red. Diseña interfaces espectaculares y dale vida a aplicaciones móviles modernas desde cero.</p>
+          </div>
+          <button class="cyber-btn select-level-btn" data-file="level1_ui.json">INICIAR RETO &rarr;</button>
+        </div>
+
+        <!-- Nivel 2 -->
+        <div class="module-card" data-level="level2_logic.json" data-required="300">
+          <div>
+            <h3>MÓDULO 02: LÓGICA Y PROGRAMACIÓN</h3>
+            <p>Pon a prueba tu mente y domina la magia detrás del código. Resuelve acertijos digitales, crea estructuras sólidas y piensa como un verdadero desarrollador.</p>
+          </div>
+          <button class="cyber-btn select-level-btn" data-file="level2_logic.json">INICIAR RETO &rarr;</button>
+        </div>
+
+        <!-- Nivel 3 -->
+        <div class="module-card" data-level="level3_sql.json" data-required="600">
+          <div>
+            <h3>MÓDULO 03: BASES DE DATOS SQL</h3>
+            <p>Descubre el arte de organizar y dominar grandes volúmenes de información. Aprende a conectar datos, hacer consultas clave y mantener todo bajo control sin perder nada.</p>
+          </div>
+          <button class="cyber-btn select-level-btn" data-file="level3_sql.json">INICIAR RETO &rarr;</button>
+        </div>
+
+        <!-- Nivel 4 -->
+        <div class="module-card" data-level="level4_devops.json" data-required="900">
+          <div>
+            <h3>MÓDULO 04: REDES Y SOPORTE IT</h3>
+            <p>Sé el héroe informático que todo sistema necesita. Diagnostica fallos, conecta redes y mantiene la infraestructura funcionando bajo cualquier situación.</p>
+          </div>
+          <button class="cyber-btn select-level-btn" data-file="level4_devops.json">INICIAR RETO &rarr;</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal de Advertencia / Reto Cyberpunk -->
+  <div id="challenge-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="warning-icon">⚠️</span>
+        <h2 id="modal-title">¿ESTÁS SEGURO?</h2>
+      </div>
+      
+      <div class="modal-body">
+        <p id="modal-quote" class="modal-quote">"¿Realmente la programación es tu fuerte o solo estás adivinando?"</p>
+        <p class="modal-subtext">Este módulo evaluará tus conocimientos al límite. Una vez dentro, no hay marcha atrás.</p>
+      </div>
+
+      <div class="modal-actions">
+        <button id="modal-cancel-btn" class="cyber-btn-alt">ACOBARDARSE</button>
+        <button id="modal-confirm-btn" class="cyber-btn modal-accept-btn">ACEPTAR EL RETO &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Importar Supabase Client desde CDN y Lógica Corregida -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const SUPABASE_URL = 'https://gzfojrcnysmiinjiatpw.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Zm9qcmNueXNtaWluamlhdHB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY2NTQ4MDQsImV4cCI6MjEwMjIzMDgwNH0.t_snhtVLc_vHGz2sGDk57PSXi3noH1QzRhL47hxmaRw';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Validar sesión
+      const userRaw = localStorage.getItem('cz_user');
+      if (!userRaw) {
+        window.location.href = 'login.html';
+        return;
+      }
+      let user = JSON.parse(userRaw);
+
+      // Sincronizar datos frescos del usuario desde Supabase
+      try {
+        const { data: freshUser } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', user.id)
+          .single();
+
+        if (freshUser) {
+          user = freshUser;
+          localStorage.setItem('cz_user', JSON.stringify(user));
+        }
+      } catch (e) {
+        console.warn('Usando sesión local de respaldo.');
+      }
+
+      // 2. Obtener el historial real desde game_history y calcular puntajes
+      let bestScoresByModule = {};
+      let totalAccumulatedScore = 0;
+
+      try {
+        const { data: historyData } = await supabase
+          .from('game_history')
+          .select('module_id, score_obtained')
+          .eq('user_id', user.id);
+
+        if (historyData && historyData.length > 0) {
+          historyData.forEach(item => {
+            const mod = item.module_id;
+            const score = parseInt(item.score_obtained) || 0;
+            if (!bestScoresByModule[mod] || score > bestScoresByModule[mod]) {
+              bestScoresByModule[mod] = score;
+            }
+          });
+          totalAccumulatedScore = Object.values(bestScoresByModule).reduce((sum, curr) => sum + curr, 0);
+        } else {
+          totalAccumulatedScore = user.dls_score ?? user.score ?? 0;
+        }
+      } catch (err) {
+        console.error('Error al calcular puntajes desde el historial:', err);
+        totalAccumulatedScore = user.dls_score ?? user.score ?? 0;
+      }
+
+      // Sincronizar puntaje real en Supabase
+      try {
+        await supabase
+          .from('users')
+          .update({ dls_score: totalAccumulatedScore })
+          .eq('id', user.id);
+      } catch (syncScoreErr) {
+        console.error('Error al actualizar dls_score en Supabase:', syncScoreErr);
+      }
+
+      // Renderizar datos del perfil
+      const nicknameEl = document.getElementById('user-nickname');
+      const scoreEl = document.getElementById('user-score');
+      
+      if (nicknameEl) nicknameEl.textContent = user.nickname || 'DEV_USER';
+      if (scoreEl) scoreEl.textContent = totalAccumulatedScore;
+
+      // 3. Cargar avatar
+      const avatarImg = document.getElementById('user-avatar');
+      if (avatarImg) {
+        if (user.avatar === 'cyber_queen') {
+          avatarImg.src = 'https://i.postimg.cc/HknQWjdM/pixelcut-export-(1).png';
+        } else {
+          avatarImg.src = 'https://i.postimg.cc/JzxdvsKH/pixelcut-export.png';
+        }
+      }
+
+      // 4. Bloquear / Desbloquear módulos dinámicamente (Corregido para desbloquear el Módulo 4 correctamente)
+      const currentLevelUnlocked = parseInt(user.unlocked_level || user.unlockedLevel) || 1;
+      const moduleCards = document.querySelectorAll('.module-card');
+
+      moduleCards.forEach((card, index) => {
+        const moduleNumber = index + 1;
+        const btn = card.querySelector('.select-level-btn');
+        const requiredScore = parseInt(card.dataset.required) || 0;
+
+        let isCompleted = moduleNumber < currentLevelUnlocked;
+        let isLockedByLevel = moduleNumber > currentLevelUnlocked;
+        
+        // Ajuste definitivo: Si el módulo es menor o igual al nivel desbloqueado por progreso, 
+        // se asegura de no bloquearse por un requisito estricto de puntos desfasado.
+        if (moduleNumber <= currentLevelUnlocked) {
+          isLockedByLevel = false;
+          if (moduleNumber < currentLevelUnlocked) {
+            isCompleted = true;
+          } else {
+            isCompleted = false;
+          }
+        }
+
+        if (isCompleted) {
+          card.classList.remove('locked');
+          if (btn) {
+            btn.classList.remove('locked-btn');
+            btn.innerHTML = `✅ REPASAR MÓDULO`;
+          }
+        } else if (isLockedByLevel) {
+          card.classList.add('locked');
+          if (btn) {
+            btn.classList.add('locked-btn');
+            btn.innerHTML = `🔒 BLOQUEADO (${requiredScore} PTS)`;
+          }
+        } else {
+          card.classList.remove('locked');
+          if (btn) {
+            btn.classList.remove('locked-btn');
+            btn.innerHTML = `JUGAR MÓDULO 🚀`;
+          }
+        }
+      });
+
+      // 5. Frases desafiantes personalizadas
+      const moduleQuotes = {
+        'level1_ui.json': '¿Seguro que dominas la maquetación o solo dependes del "Copy-Paste"? Muestra si realmente sabes diseñar.',
+        'level2_logic.json': '¿Estás seguro de que la programación es tu fuerte? Aquí la lógica pura destruirá tus excusas.',
+        'level3_sql.json': '¿Realmente sabes lo que quieres o te vas a paralizar al primer JOIN complejo en la base de datos?',
+        'level4_devops.json': '¿Tienes lo necesario para resolver problemas bajo presión o te vas a acobardar en el primer fallo del sistema?'
+      };
+
+      // 6. Manejo del Modal
+      const modal = document.getElementById('challenge-modal');
+      const modalQuote = document.getElementById('modal-quote');
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+      const cancelBtn = document.getElementById('modal-cancel-btn');
+      let selectedLevelFile = null;
+
+      function openModal(levelFile) {
+        selectedLevelFile = levelFile;
+        if (modalQuote && moduleQuotes[levelFile]) {
+          modalQuote.textContent = `"${moduleQuotes[levelFile]}"`;
+        }
+        if (modal) modal.classList.remove('hidden');
+      }
+
+      // Eventos para botones y tarjetas
+      const selectBtns = document.querySelectorAll('.select-level-btn');
+      selectBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.module-card');
+          if (card && card.classList.contains('locked')) return;
+
+          const levelFile = btn.dataset.file || 'level1_ui.json';
+          openModal(levelFile);
+        });
+      });
+
+      moduleCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (card.classList.contains('locked')) return;
+
+          const levelFile = card.dataset.level || 'level1_ui.json';
+          openModal(levelFile);
+        });
+      });
+
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (selectedLevelFile) {
+            sessionStorage.setItem('current_level_file', selectedLevelFile);
+            window.location.href = 'gameplay.html';
+          }
+        });
+      }
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (modal) modal.classList.add('hidden');
+          selectedLevelFile = null;
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          e.target === modal && (modal.classList.add('hidden'), selectedLevelFile = null);
+        });
+      }
+
+      // 7. Manejar Salida
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('cz_user');
+          sessionStorage.removeItem('current_level_file');
+          window.location.href = 'login.html';
+        });
+      }
+
+      // 8. Manejar Reinicio de Progreso (Corregido y Actualizado)
+      const resetBtn = document.getElementById('reset-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', async () => {
+          if (confirm('¿Estás seguro de reiniciar todo el progreso? Se borrarán tus puntajes y se bloquearán nuevamente los módulos.')) {
+            sessionStorage.clear();
+            
+            bestScoresByModule = {};
+            totalAccumulatedScore = 0;
+            if (scoreEl) scoreEl.textContent = '0';
+
+            user.unlockedLevel = 1;
+            user.unlocked_level = 1;
+            user.dls_score = 0;
+            user.score = 0;
+            localStorage.setItem('cz_user', JSON.stringify(user));
+
+            try {
+              if (user && user.id) {
+                await supabase
+                  .from('users')
+                  .update({ unlocked_level: 1, dls_score: 0 })
+                  .eq('id', user.id);
+
+                await supabase
+                  .from('game_history')
+                  .delete()
+                  .eq('user_id', user.id);
+              }
+            } catch (syncErr) {
+              console.error('Error al sincronizar el reinicio en Supabase:', syncErr);
+            }
+
+            window.location.reload();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

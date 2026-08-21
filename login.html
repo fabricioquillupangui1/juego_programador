@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Zero | Acceso al Sistema</title>
+  <link rel="stylesheet" href="css/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="glass-card">
+      <div class="brand">
+        <h1>CÓDIGO <span>ZERO</span></h1>
+        <p class="tagline">Descubre si realmente tienes madera de programador</p>
+      </div>
+
+      <!-- Pestañas de Alternancia -->
+      <div class="auth-tabs">
+        <button id="tab-login" class="tab-btn active" data-tab="login" type="button">INICIAR SESIÓN</button>
+        <button id="tab-register" class="tab-btn" data-tab="register" type="button">REGISTRARSE</button>
+      </div>
+
+      <!-- Formulario de Login -->
+      <form id="login-form" class="auth-form" onsubmit="return false;">
+        <div class="input-group">
+          <label for="login-email">Correo Electrónico</label>
+          <input type="email" id="login-email" placeholder="dev@codigo-zero.com" required autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label for="login-password">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="toggle-password" data-target="login-password" aria-label="Mostrar u ocultar contraseña">👁️</button>
+          </div>
+        </div>
+        <button type="submit" class="cyber-btn">INGRESAR AL SISTEMA</button>
+      </form>
+
+      <!-- Formulario de Registro (Oculto por defecto) -->
+      <form id="register-form" class="auth-form hidden" onsubmit="return false;">
+        <div class="input-group">
+          <label for="reg-nickname">Nickname Dev</label>
+          <input type="text" id="reg-nickname" placeholder="Ej. CyberDev_99" required maxlength="20" autocomplete="nickname">
+        </div>
+        <div class="input-group">
+          <label for="reg-email">Correo Electrónico</label>
+          <input type="email" id="reg-email" placeholder="dev@codigo-zero.com" required autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label for="reg-password">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="reg-password" placeholder="••••••••" required minlength="6" autocomplete="new-password">
+            <button type="button" class="toggle-password" data-target="reg-password" aria-label="Mostrar u ocultar contraseña">👁️</button>
+          </div>
+        </div>
+
+        <!-- Selector de Avatar -->
+        <div class="avatar-selection">
+          <label>Selecciona tu Avatar Dev:</label>
+          <div class="avatar-grid">
+            <!-- Avatar 1: Panda Hacker -->
+            <div class="avatar-select-card active" data-avatar="panda_hacker">
+              <div class="avatar-img-container">
+                <img src="https://i.postimg.cc/JzxdvsKH/pixelcut-export.png" alt="Panda Hacker" class="avatar-img">
+              </div>
+              <span>PANDA HACKER</span>
+              <small></small>
+            </div>
+
+            <!-- Avatar 2: Cyber Queen -->
+            <div class="avatar-select-card" data-avatar="cyber_queen">
+              <div class="avatar-img-container">
+                <img src="https://i.postimg.cc/HknQWjdM/pixelcut-export-(1).png" alt="Cyber Queen" class="avatar-img">
+              </div>
+              <span>CYBER QUEEN</span>
+              <small></small>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="cyber-btn">CREAR JUGADOR</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Controlador de Autenticación Supabase con cache-busting -->
+  <script type="module" src="js/auth.js?v=2"></script>
+
+  <!-- Verificación de Sesión Activa -->
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeUser = localStorage.getItem('cz_user');
+      if (activeUser) {
+        window.location.replace('levels.html');
+      }
+    });
+  </script>
+</body>
+</html>

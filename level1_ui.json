@@ -1,0 +1,245 @@
+{
+  "module_title": "NIVEL 1:Diseño Web y Móvil",
+  "questions": [
+    {
+      "id": 1,
+      "question": "El contenedor principal desalinea los elementos. ¿Qué propiedad CSS los centra en el eje principal en Flexbox?",
+      "code": ".glass-container {\n  display: flex;\n  /* ??? */\n  align-items: center;\n}",
+      "options": [
+        { "text": "justify-content: center;", "isCorrect": true },
+        { "text": "float: center;", "isCorrect": false },
+        { "text": "text-align: center;", "isCorrect": false },
+        { "text": "margin: auto 0;", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! 'justify-content: center' alinea los elementos a lo largo del eje principal del contenedor Flexbox."
+    },
+    {
+      "id": 2,
+      "question": "Necesitas organizar un Avatar y un Texto uno al lado del otro horizontalmente en Jetpack Compose. ¿Qué Composable debes usar?",
+      "code": "@Composable\nfun UserCard() {\n    /* ??? */ {\n        Image(painter = painterResource(R.drawable.byte_happy), contentDescription = null)\n        Text(text = \"Dev Status: Online\")\n    }\n}",
+      "options": [
+        { "text": "Row", "isCorrect": true },
+        { "text": "Column", "isCorrect": false },
+        { "text": "Box", "isCorrect": false },
+        { "text": "LazyColumn", "isCorrect": false }
+      ],
+      "explanation": "¡Excelente! En Jetpack Compose, 'Row' posiciona a sus elementos hijos secuencialmente en dirección horizontal."
+    },
+    {
+      "id": 3,
+      "question": "¿Qué propiedad CSS se utiliza para aplicar un efecto de desenfoque al fondo dentro de un diseño Glassmorphism?",
+      "code": ".glass-card {\n  background: rgba(255, 255, 255, 0.1);\n  /* ??? */\n}",
+      "options": [
+        { "text": "backdrop-filter: blur(10px);", "isCorrect": true },
+        { "text": "filter: blur(10px);", "isCorrect": false },
+        { "text": "box-shadow: blur(10px);", "isCorrect": false },
+        { "text": "background-blur: 10px;", "isCorrect": false }
+      ],
+      "explanation": "¡Así es! 'backdrop-filter: blur()' aplica efectos gráficos (como desenfoque) al área situada detrás de un elemento."
+    },
+    {
+      "id": 4,
+      "question": "En Jetpack Compose, ¿qué Modificador se aplica a una imagen para que se recorte en forma de círculo?",
+      "code": "Image(\n    painter = painterResource(R.drawable.avatar),\n    contentDescription = null,\n    modifier = Modifier./* ??? */\n)",
+      "options": [
+        { "text": "clip(CircleShape)", "isCorrect": true },
+        { "text": "shape(CircleShape)", "isCorrect": false },
+        { "text": "borderRadius(50)", "isCorrect": false },
+        { "text": "border(CircleShape)", "isCorrect": false }
+      ],
+      "explanation": "¡Exacto! El modificador 'clip(CircleShape)' recorta el contenido visual del Composable con una forma circular."
+    },
+    {
+      "id": 5,
+      "question": "¿Qué propiedad de CSS Grid define el número y ancho de las columnas en una maquetación?",
+      "code": ".dashboard-grid {\n  display: grid;\n  /* ??? */\n}",
+      "options": [
+        { "text": "grid-template-columns: repeat(3, 1fr);", "isCorrect": true },
+        { "text": "grid-columns: 3;", "isCorrect": false },
+        { "text": "flex-direction: row;", "isCorrect": false },
+        { "text": "grid-auto-flow: columns;", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! 'grid-template-columns' establece los nombres de las líneas y las funciones de tamaño de pista en columnas."
+    },
+    {
+      "id": 6,
+      "question": "En Kotlin Compose, ¿cuál es el estado utilizado para mantener el valor de una variable a través de las recomposiciones de la interfaz?",
+      "code": "@Composable\nfun Counter() {\n    var count by remember { /* ??? */ }\n}",
+      "options": [
+        { "text": "mutableStateOf(0)", "isCorrect": true },
+        { "text": "useState(0)", "isCorrect": false },
+        { "text": "observableOf(0)", "isCorrect": false },
+        { "text": "rememberState(0)", "isCorrect": false }
+      ],
+      "explanation": "¡Perfecto! 'mutableStateOf' crea un MutableState cuya lectura y escritura son observadas por Compose para recomponer la UI."
+    },
+    {
+      "id": 7,
+      "question": "¿Qué unidad de medida en CSS es relativa al tamaño de la fuente de la raíz (etiqueta <html>)?",
+      "code": "h1 {\n  font-size: 2.5/* ??? */;\n}",
+      "options": [
+        { "text": "rem", "isCorrect": true },
+        { "text": "em", "isCorrect": false },
+        { "text": "px", "isCorrect": false },
+        { "text": "vh", "isCorrect": false }
+      ],
+      "explanation": "¡Muy bien! 'rem' (root em) calcula su valor en base al tamaño de fuente definido en el elemento raíz HTML."
+    },
+    {
+      "id": 8,
+      "question": "¿Qué Composable se debe utilizar en Android cuando se necesita renderizar una lista muy larga de elementos sin saturar la memoria?",
+      "code": "@Composable\nfun UserList(users: List<User>) {\n    /* ??? */ { items ->\n        UserRow(items)\n    }\n}",
+      "options": [
+        { "text": "LazyColumn", "isCorrect": true },
+        { "text": "Column", "isCorrect": false },
+        { "text": "ScrollView", "isCorrect": false },
+        { "text": "RecyclerView", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! 'LazyColumn' solo compone y renderiza los elementos que son visibles actualmente en la pantalla del usuario."
+    },
+    {
+      "id": 9,
+      "question": "¿Qué atributo HTML5 es imprescindible para asegurar que la página se adapte correctamente a pantallas de dispositivos móviles?",
+      "code": "<head>\n  <meta name=\"/* ??? */\" content=\"width=device-width, initial-scale=1.0\">\n</head>",
+      "options": [
+        { "text": "viewport", "isCorrect": true },
+        { "text": "responsive", "isCorrect": false },
+        { "text": "media-query", "isCorrect": false },
+        { "text": "screen-size", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! La etiqueta meta 'viewport' le indica al navegador cómo controlar las dimensiones y el escalado de la página."
+    },
+    {
+      "id": 10,
+      "question": "En Jetpack Compose, ¿qué componente permite superponer elementos uno encima del otro (como poner texto sobre una imagen)?",
+      "code": "@Composable\nfun AvatarBadge() {\n    /* ??? */ {\n        Image(painter = painterResource(R.drawable.avatar), contentDescription = null)\n        Icon(Icons.Default.Check, contentDescription = null)\n    }\n}",
+      "options": [
+        { "text": "Box", "isCorrect": true },
+        { "text": "Row", "isCorrect": false },
+        { "text": "Column", "isCorrect": false },
+        { "text": "ConstraintLayout", "isCorrect": false }
+      ],
+      "explanation": "¡Así es! 'Box' apila a sus componentes hijos uno sobre otro en el eje Z (profundidad)."
+    },
+    {
+      "id": 11,
+      "question": "¿Qué pseudo-clase CSS se activa cuando un usuario pasa el puntero del ratón por encima de un botón en la interfaz?",
+      "code": ".cyber-btn:/* ??? */ {\n  background-color: #00ff66;\n  box-shadow: 0 0 10px #00ff66;\n}",
+      "options": [
+        { "text": "hover", "isCorrect": true },
+        { "text": "active", "isCorrect": false },
+        { "text": "focus", "isCorrect": false },
+        { "text": "visited", "isCorrect": false }
+      ],
+      "explanation": "¡Exacto! ':hover' selecciona y aplica estilos a un elemento cuando el usuario interactúa con él mediante un dispositivo apuntador."
+    },
+    {
+      "id": 12,
+      "question": "En Jetpack Compose, ¿cuál es la forma correcta de agregar espacio de relleno (padding) alrededor de un texto?",
+      "code": "Text(\n    text = \"Hola Código Zero\",\n    modifier = Modifier./* ??? */\n)",
+      "options": [
+        { "text": "padding(16.dp)", "isCorrect": true },
+        { "text": "margin(16.dp)", "isCorrect": false },
+        { "text": "spacing(16.dp)", "isCorrect": false },
+        { "text": "inset(16.dp)", "isCorrect": false }
+      ],
+      "explanation": "¡Excelente! En Compose no existe el concepto de 'margin'; todas las distancias internas y externas se manejan mediante 'padding()'."
+    },
+    {
+      "id": 13,
+      "question": "¿Qué propiedad CSS permite crear sombras internas o externas en las tarjetas Glassmorphism?",
+      "code": ".glass-card {\n  /* ??? */: 0 8px 32px 0 rgba(0, 243, 255, 0.37);\n}",
+      "options": [
+        { "text": "box-shadow", "isCorrect": true },
+        { "text": "text-shadow", "isCorrect": false },
+        { "text": "border-shadow", "isCorrect": false },
+        { "text": "drop-shadow", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! 'box-shadow' aplica efectos de sombra alrededor del marco de un elemento."
+    },
+    {
+      "id": 14,
+      "question": "En Jetpack Compose, ¿qué parámetro del Composable 'Button' recibe la acción o función que se ejecutará al hacer clic?",
+      "code": "Button(/* ??? */ = { doSomething() }) {\n    Text(\"ENVIAR\")\n}",
+      "options": [
+        { "text": "onClick", "isCorrect": true },
+        { "text": "onPress", "isCorrect": false },
+        { "text": "action", "isCorrect": false },
+        { "text": "onChange", "isCorrect": false }
+      ],
+      "explanation": "¡Perfecto! 'onClick' es la lambda de callback obligatoria en el Composable 'Button' para capturar el evento de toque."
+    },
+    {
+      "id": 15,
+      "question": "En JavaScript moderno, ¿qué método de arrays se utiliza para transformar una lista creando una nueva con los resultados?",
+      "code": "const scores = [10, 20, 30];\nconst doubled = scores./* ??? */(x => x * 2);",
+      "options": [
+        { "text": "map", "isCorrect": true },
+        { "text": "forEach", "isCorrect": false },
+        { "text": "filter", "isCorrect": false },
+        { "text": "reduce", "isCorrect": false }
+      ],
+      "explanation": "¡Así es! '.map()' crea un nuevo array poblado con los resultados de la función llamada en cada elemento del array."
+    },
+    {
+      "id": 16,
+      "question": "¿Qué regla de CSS permite aplicar estilos condicionales según el tamaño de la pantalla (Media Queries)?",
+      "code": "/* ??? */ (max-width: 768px) {\n  .player-bar { flex-direction: column; }\n}",
+      "options": [
+        { "text": "@media", "isCorrect": true },
+        { "text": "@container", "isCorrect": false },
+        { "text": "@viewport", "isCorrect": false },
+        { "text": "@screen", "isCorrect": false }
+      ],
+      "explanation": "¡Muy bien! Las reglas '@media' permiten adaptar el diseño responsive a diferentes tipos de dispositivos y resoluciones."
+    },
+    {
+      "id": 17,
+      "question": "En Jetpack Compose, ¿qué unidad de medida debe usarse prioritariamente para definir el tamaño de la fuente de un Text?",
+      "code": "Text(\n    text = \"PUNTAJE DLS\",\n    fontSize = 18./* ??? */\n)",
+      "options": [
+        { "text": "sp", "isCorrect": true },
+        { "text": "dp", "isCorrect": false },
+        { "text": "px", "isCorrect": false },
+        { "text": "pt", "isCorrect": false }
+      ],
+      "explanation": "¡Correcto! En Android, 'sp' (Scale-independent Pixels) respeta las preferencias de tamaño de texto configuradas por el usuario en el sistema."
+    },
+    {
+      "id": 18,
+      "question": "¿Qué propiedad de CSS Flexbox define cómo se distribuirá el espacio sobrante entre y alrededor de los ítems en el eje secundario?",
+      "code": ".game-container {\n  display: flex;\n  /* ??? */: center;\n}",
+      "options": [
+        { "text": "align-items", "isCorrect": true },
+        { "text": "justify-items", "isCorrect": false },
+        { "text": "align-content", "isCorrect": false },
+        { "text": "flex-wrap", "isCorrect": false }
+      ],
+      "explanation": "¡Exacto! 'align-items' controla la alineación de los elementos flexibles a lo largo del eje transversal (cross-axis)."
+    },
+    {
+      "id": 19,
+      "question": "En Kotlin Compose, ¿cuál es la función de 'LaunchedEffect'?",
+      "code": "/* ??? */(key1 = true) {\n    loadGameData()\n}",
+      "options": [
+        { "text": "Ejecutar efectos secundarios o corrutinas dentro de un ciclo de vida Composable.", "isCorrect": true },
+        { "text": "Crear animaciones complejas de renderizado.", "isCorrect": false },
+        { "text": "Definir estilos CSS dentro de Kotlin.", "isCorrect": false },
+        { "text": "Navegar hacia otra pantalla automáticamente.", "isCorrect": false }
+      ],
+      "explanation": "¡Excelente! 'LaunchedEffect' permite lanzar bloques de código suspendible (corrutinas) de forma segura dentro del contexto de Compose."
+    },
+    {
+      "id": 20,
+      "question": "¿Qué propiedad CSS permite ajustar la transparencia total de un elemento y sus hijos?",
+      "code": ".modal-overlay {\n  /* ??? */: 0.85;\n}",
+      "options": [
+        { "text": "opacity", "isCorrect": true },
+        { "text": "visibility", "isCorrect": false },
+        { "text": "display", "isCorrect": false },
+        { "text": "filter", "isCorrect": false }
+      ],
+      "explanation": "¡Perfecto! 'opacity' especifica el nivel de transparencia de un elemento, donde 1 es totalmente opaco y 0 es completamente transparente."
+    }
+  ]
+}

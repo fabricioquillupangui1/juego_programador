@@ -1,0 +1,367 @@
+{
+  "levelId": 2,
+  "title": "NIVEL 2: LÓGICA Y PROGRAMACIÓN",
+  "description": "Depuración de Código, Estructuras de Datos JSON y Lógica",
+  "games": [
+    {
+      "gameId": "game_1_bughunter",
+      "type": "single_choice",
+      "title": "Bug Hunter",
+      "instruction": "Un bucle 'while' está generando un bloqueo infinito de memoria. Selecciona la línea que falta para solucionarlo.",
+      "codeSnippet": "let counter = 0;\nwhile (counter < 5) {\n  console.log(\"Procesando id: \" + counter);\n  // Bug: falta la actualización del contador\n}",
+      "options": [
+        { "id": "opt1", "text": "counter++;", "isCorrect": true },
+        { "id": "opt2", "text": "break counter;", "isCorrect": false },
+        { "id": "opt3", "text": "counter == 5;", "isCorrect": false },
+        { "id": "opt4", "text": "return counter;", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Bug corregido! Incrementar el contador rompe el bucle infinito.",
+        "error": "Error de ejecución: Si no incrementas 'counter', la condición (counter < 5) nunca se cumple."
+      }
+    },
+    {
+      "gameId": "game_2_jsonmapper",
+      "type": "single_choice",
+      "title": "JSON Tree Mapper",
+      "instruction": "La API devuelve los datos del usuario. ¿Cuál es el valor exacto de 'response.user.roles[1]'?",
+      "codeSnippet": "{\n  \"status\": 200,\n  \"user\": {\n    \"name\": \"Byte\",\n    \"roles\": [\"ADMIN\", \"DEV_LEAD\", \"ANALYST\"]\n  }\n}",
+      "options": [
+        { "id": "opt1", "text": "\"DEV_LEAD\"", "isCorrect": true },
+        { "id": "opt2", "text": "\"ADMIN\"", "isCorrect": false },
+        { "id": "opt3", "text": "\"ANALYST\"", "isCorrect": false },
+        { "id": "opt4", "text": "undefined", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! En arreglos base-0, el índice 1 corresponde al segundo elemento.",
+        "error": "Índice incorrecto: Recuerda que las posiciones inician en 0 ('ADMIN') y la 1 es 'DEV_LEAD'."
+      }
+    },
+    {
+      "gameId": "game_3_condicional",
+      "type": "single_choice",
+      "title": "Control de Acceso",
+      "instruction": "¿Qué operador lógico se debe usar para verificar que el usuario sea mayor de edad Y tenga membresía activa?",
+      "codeSnippet": "let edad = 20;\nlet tieneMembresia = true;\nif (edad >= 18 [OP] tieneMembresia) {\n  console.log(\"Acceso concedido\");\n}",
+      "options": [
+        { "id": "opt1", "text": "&&", "isCorrect": true },
+        { "id": "opt2", "text": "||", "isCorrect": false },
+        { "id": "opt3", "text": "!", "isCorrect": false },
+        { "id": "opt4", "text": "==", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El operador '&&' (AND) exige que ambas condiciones se cumplan.",
+        "error": "Incorrecto: Para que ambas condiciones sean obligatorias al mismo tiempo se usa '&&'."
+      }
+    },
+    {
+      "gameId": "game_4_arrayfilter",
+      "type": "single_choice",
+      "title": "Filtrado de Arreglos",
+      "instruction": "¿Qué método de JavaScript permite filtrar elementos de un arreglo basándose en una condición?",
+      "codeSnippet": "const numeros = [10, 15, 20, 25];\n// ¿Qué método filtra los mayores a 15?\nconst mayores = numeros.[METODO](n => n > 15);",
+      "options": [
+        { "id": "opt1", "text": "filter", "isCorrect": true },
+        { "id": "opt2", "text": "map", "isCorrect": false },
+        { "id": "opt3", "text": "reduce", "isCorrect": false },
+        { "id": "opt4", "text": "forEach", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! El método 'filter' crea un nuevo arreglo con los elementos que cumplen la condición.",
+        "error": "Incorrecto: 'map' transforma elementos, mientras que 'filter' es el encargado de filtrar."
+      }
+    },
+    {
+      "gameId": "game_5_scope",
+      "type": "single_choice",
+      "title": "Ámbito de Variables (Scope)",
+      "instruction": "¿Cuál será el resultado en consola al ejecutar el siguiente bloque de código con 'let'?",
+      "codeSnippet": "let x = 10;\nif (true) {\n  let x = 20;\n  console.log(x);\n}\nconsole.log(x);",
+      "options": [
+        { "id": "opt1", "text": "20 y 10", "isCorrect": true },
+        { "id": "opt2", "text": "20 y 20", "isCorrect": false },
+        { "id": "opt3", "text": "10 y 10", "isCorrect": false },
+        { "id": "opt4", "text": "Error de sintaxis", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'let' tiene alcance de bloque, por lo que la x interna no afecta a la externa.",
+        "error": "Incorrecto: Recuerda que 'let' respeta el ámbito de bloque (block scope)."
+      }
+    },
+    {
+      "gameId": "game_6_functions",
+      "type": "single_choice",
+      "title": "Funciones Flecha",
+      "instruction": "Selecciona la sintaxis correcta para una función flecha (arrow function) que sume dos números a y b.",
+      "codeSnippet": "// Convierte esta función clásica:\n// function sumar(a, b) { return a + b; }\nconst sumar = (a, b) => [EXPRESION];",
+      "options": [
+        { "id": "opt1", "text": "a + b", "isCorrect": true },
+        { "id": "opt2", "text": "{ return a + b }", "isCorrect": false },
+        { "id": "opt3", "text": "return a + b", "isCorrect": false },
+        { "id": "opt4", "text": "(a + b)", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! Con retorno implícito en una sola línea no se necesitan llaves ni la palabra 'return'.",
+        "error": "Incorrecto: Al usar una función flecha sin llaves, la expresión se retorna automáticamente."
+      }
+    },
+    {
+      "gameId": "game_7_objetos",
+      "type": "single_choice",
+      "title": "Desestructuración de Objetos",
+      "instruction": "¿Cómo se extraen correctamente las propiedades 'nombre' y 'rol' usando destructuring?",
+      "codeSnippet": "const user = { nombre: 'Carlos', rol: 'Admin', edad: 30 };\n// Extraer nombre y rol:\nconst { [PROPIEDADES] } = user;",
+      "options": [
+        { "id": "opt1", "text": "nombre, rol", "isCorrect": true },
+        { "id": "opt2", "text": "[nombre, rol]", "isCorrect": false },
+        { "id": "opt3", "text": "nombre : rol", "isCorrect": false },
+        { "id": "opt4", "text": "{ nombre, rol }", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! La sintaxis de desestructuración de objetos utiliza llaves en el lado izquierdo.",
+        "error": "Incorrecto: La desestructuración de objetos se define encerrando las claves exactas entre llaves."
+      }
+    },
+    {
+      "gameId": "game_8_asincronia",
+      "type": "single_choice",
+      "title": "Promesas y Async/Await",
+      "instruction": "¿Qué palabra clave se debe anteponer a una función para poder usar 'await' dentro de ella?",
+      "codeSnippet": "[KEYWORD] function obtenerDatos() {\n  const resultado = await api.getData();\n  return resultado;\n}",
+      "options": [
+        { "id": "opt1", "text": "async", "isCorrect": true },
+        { "id": "opt2", "text": "await", "isCorrect": false },
+        { "id": "opt3", "text": "promise", "isCorrect": false },
+        { "id": "opt4", "text": "static", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! Una función debe declararse como 'async' para admitir operaciones con 'await'.",
+        "error": "Incorrecto: 'await' solo puede ser utilizado dentro de funciones marcadas con 'async'."
+      }
+    },
+    {
+      "gameId": "game_9_trycatch",
+      "type": "single_choice",
+      "title": "Manejo de Excepciones",
+      "instruction": "¿Qué bloque de código se ejecuta obligatoriamente al final, ocurra o no un error en el try/catch?",
+      "codeSnippet": "try {\n  ejecutarOperacionRisky();\n} catch (error) {\n  console.error(error);\n} [BLOQUE] {\n  console.log(\"Siempre me ejecuto\");\n}",
+      "options": [
+        { "id": "opt1", "text": "finally", "isCorrect": true },
+        { "id": "opt2", "text": "always", "isCorrect": false },
+        { "id": "opt3", "text": "end", "isCorrect": false },
+        { "id": "opt4", "text": "complete", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El bloque 'finally' se ejecuta siempre al terminar la estructura try-catch.",
+        "error": "Incorrecto: En JavaScript el bloque final se denomina 'finally'."
+      }
+    },
+    {
+      "gameId": "game_10_jsonparse",
+      "type": "single_choice",
+      "title": "Parseo de JSON",
+      "instruction": "¿Qué método se utiliza para convertir una cadena de texto (string) con formato JSON en un objeto de JavaScript?",
+      "codeSnippet": "const jsonString = '{\"id\": 1, \"activo\": true}';\nconst objeto = [METODO](jsonString);",
+      "options": [
+        { "id": "opt1", "text": "JSON.parse", "isCorrect": true },
+        { "id": "opt2", "text": "JSON.stringify", "isCorrect": false },
+        { "id": "opt3", "text": "Object.parse", "isCorrect": false },
+        { "id": "opt4", "text": "Parse.json", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! 'JSON.parse()' deserializa texto JSON a un objeto manipulable.",
+        "error": "Incorrecto: 'JSON.stringify' hace lo opuesto (convierte objeto a texto)."
+      }
+    },
+    {
+      "gameId": "game_11_arrayslice",
+      "type": "single_choice",
+      "title": "Manipulación de Arreglos",
+      "instruction": "¿Qué devuelve el método 'slice(1, 3)' aplicado sobre el siguiente arreglo?",
+      "codeSnippet": "const frutas = [\"manzana\", \"pera\", \"uva\", \"sandía\"];\nconst resultado = frutas.slice(1, 3);",
+      "options": [
+        { "id": "opt1", "text": "[\"pera\", \"uva\"]", "isCorrect": true },
+        { "id": "opt2", "text": "[\"pera\", \"uva\", \"sandía\"]", "isCorrect": false },
+        { "id": "opt3", "text": "[\"manzana\", \"pera\", \"uva\"]", "isCorrect": false },
+        { "id": "opt4", "text": "[\"uva\", \"sandía\"]", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'slice' extrae desde el índice inicial (1) hasta antes del índice final (3 exógeno).",
+        "error": "Incorrecto: El índice final en 'slice' no se incluye en el resultado extraído."
+      }
+    },
+    {
+      "gameId": "game_12_strictmode",
+      "type": "single_choice",
+      "title": "Comparación Estricta",
+      "instruction": "¿Cuál es la diferencia principal entre el operador de igualdad normal (==) y el estricto (===)?",
+      "codeSnippet": "console.log(5 == \"5\");  // true o false?\nconsole.log(5 === \"5\"); // true o false?",
+      "options": [
+        { "id": "opt1", "text": "=== compara valor y tipo de dato", "isCorrect": true },
+        { "id": "opt2", "text": "== evalúa si es una constante", "isCorrect": false },
+        { "id": "opt3", "text": "=== es más lento pero hace lo mismo", "isCorrect": false },
+        { "id": "opt4", "text": "No hay diferencia en JavaScript moderno", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! '===' valida estrictamente tanto el valor como el tipo de dato sin conversión implícita.",
+        "error": "Incorrecto: El operador '==' realiza coerción de tipos, mientras que '===' exige igualdad exacta."
+      }
+    },
+    {
+      "gameId": "game_13_recursividad",
+      "type": "single_choice",
+      "title": "Lógica Recursiva",
+      "instruction": "¿Qué elemento es fundamental e indispensable para evitar que una función recursiva caiga en un bucle infinito?",
+      "codeSnippet": "function cuentaRegresiva(n) {\n  // ¿Qué falta aquí?\n  console.log(n);\n  return cuentaRegresiva(n - 1);\n}",
+      "options": [
+        { "id": "opt1", "text": "Un caso base (condición de parada)", "isCorrect": true },
+        { "id": "opt2", "text": "Un bucle for interno", "isCorrect": false },
+        { "id": "opt3", "text": "Una variable global obligatoria", "isCorrect": false },
+        { "id": "opt4", "text": "El operador de incremento", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El caso base detiene la llamada recursiva para prevenir desbordamiento de pila.",
+        "error": "Incorrecto: Toda recursividad necesita un caso base que marque el fin de las llamadas."
+      }
+    },
+    {
+      "gameId": "game_14_objectkeys",
+      "type": "single_choice",
+      "title": "Inspección de Objetos",
+      "instruction": "¿Qué método estático devuelve un arreglo con todas las propiedades (claves) de un objeto?",
+      "codeSnippet": "const perfil = { user: 'Admin', activo: true, nivel: 2 };\nconst llaves = Object.[METODO](perfil);",
+      "options": [
+        { "id": "opt1", "text": "keys", "isCorrect": true },
+        { "id": "opt2", "text": "values", "isCorrect": false },
+        { "id": "opt3", "text": "entries", "isCorrect": false },
+        { "id": "opt4", "text": "properties", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! 'Object.keys()' extrae las llaves en un array de strings.",
+        "error": "Incorrecto: 'Object.keys' extrae las propiedades, 'values' extrae los valores y 'entries' ambos."
+      }
+    },
+    {
+      "gameId": "game_15_arrayreduce",
+      "type": "single_choice",
+      "title": "Reducción de Datos",
+      "instruction": "¿Qué objetivo principal cumple el método 'reduce' en un arreglo de números?",
+      "codeSnippet": "const precios = [10, 20, 30];\nconst total = precios.reduce((acumulador, actual) => acumulador + actual, 0);",
+      "options": [
+        { "id": "opt1", "text": "Acumular y reducir los elementos a un único valor final", "isCorrect": true },
+        { "id": "opt2", "text": "Eliminar duplicados del arreglo", "isCorrect": false },
+        { "id": "opt3", "text": "Ordenar los elementos de menor a mayor", "isCorrect": false },
+        { "id": "opt4", "text": "Invertir el orden del arreglo original", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'reduce' procesa cada elemento para condensarlos en un solo valor acumulado.",
+        "error": "Incorrecto: Su función es reducir el array completo a un único valor (suma, objeto, etc.)."
+      }
+    },
+    {
+      "gameId": "game_16_ternario",
+      "type": "single_choice",
+      "title": "Operador Ternario",
+      "instruction": "¿Cómo se reescribe correctamente esta estructura condicional utilizando un operador ternario?",
+      "codeSnippet": "let status;\nif (edad >= 18) { status = \"Adulto\"; } else { status = \"Menor\"; }",
+      "options": [
+        { "id": "opt1", "text": "let status = edad >= 18 ? \"Adulto\" : \"Menor\";", "isCorrect": true },
+        { "id": "opt2", "text": "let status = edad >= 18 : \"Adulto\" ? \"Menor\";", "isCorrect": false },
+        { "id": "opt3", "text": "let status = ? edad >= 18 : \"Adulto\" : \"Menor\";", "isCorrect": false },
+        { "id": "opt4", "text": "let status = (edad >= 18) { \"Adulto\" } else { \"Menor\" };", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! La estructura del ternario es: `condicion ? valorSiTrue : valorSiFalse`.",
+        "error": "Incorrecto: Revisa la colocación del signo de interrogación '?' y los dos puntos ':'."
+      }
+    },
+    {
+      "gameId": "game_17_callback",
+      "type": "single_choice",
+      "title": "Funciones Callback",
+      "instruction": "¿Qué es conceptualmente una función de tipo 'callback' en JavaScript?",
+      "codeSnippet": "setTimeout(function() {\n  console.log(\"Hola tras 2 segundos\");\n}, 2000);",
+      "options": [
+        { "id": "opt1", "text": "Una función que se pasa como argumento a otra para ser ejecutada después", "isCorrect": true },
+        { "id": "opt2", "text": "Una función que se llama a sí misma infinitamente", "isCorrect": false },
+        { "id": "opt3", "text": "Un error crítico del sistema de llamadas", "isCorrect": false },
+        { "id": "opt4", "text": "Un método exclusivo para bases de datos SQL", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! Los callbacks permiten manejar código asíncrono y flujos de eventos.",
+        "error": "Incorrecto: Un callback es simplemente una función pasada por parámetro para ejecutarse posteriormente."
+      }
+    },
+    {
+      "gameId": "game_18_nullish",
+      "type": "single_choice",
+      "title": "Fusión Nula (Nullish Coalescing)",
+      "instruction": "¿Qué evalúa el operador de fusión nula '??' frente a valores nulos o indefinidos?",
+      "codeSnippet": "const configuracion = usuario.tema ?? \"oscuro\";",
+      "options": [
+        { "id": "opt1", "text": "Retorna el valor derecho solo si el izquierdo es null o undefined", "isCorrect": true },
+        { "id": "opt2", "text": "Retorna el valor derecho si el izquierdo es 0 o un string vacío", "isCorrect": false },
+        { "id": "opt3", "text": "Compara si ambos valores son estrictamente nulos", "isCorrect": false },
+        { "id": "opt4", "text": "Convierte cualquier variable a tipo booleano", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! '??' es más seguro que '||' porque no confunde valores falsy válidos (como 0 o false) con nulos.",
+        "error": "Incorrecto: El operador '??' solo actúa específicamente ante 'null' o 'undefined'."
+      }
+    },
+    {
+      "gameId": "game_19_mutable",
+      "type": "single_choice",
+      "title": "Inmutabilidad con Spread",
+      "instruction": "¿Qué operador de propagación (spread operator) permite clonar un objeto añadiendo o modificando una propiedad sin mutar el original?",
+      "codeSnippet": "const original = { a: 1, b: 2 };\nconst clonModificado = { ...original, b: 5 };",
+      "options": [
+        { "id": "opt1", "text": "El operador tres puntos (...)", "isCorrect": true },
+        { "id": "opt2", "text": "El operador comodín (*)", "isCorrect": false },
+        { "id": "opt3", "text": "El operador ampersand (&&)", "isCorrect": false },
+        { "id": "opt4", "text": "El operador de asignación (:=)", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El operador '...' (spread) expande las propiedades logrando una copia superficial limpia.",
+        "error": "Incorrecto: El operador de propagación utiliza tres puntos consecutivos (...)."
+      }
+    },
+    {
+      "gameId": "game_20_setstructure",
+      "type": "single_choice",
+      "title": "Estructura de Datos: Set",
+      "instruction": "¿Cuál es la característica principal de la estructura de datos 'Set' en JavaScript?",
+      "codeSnippet": "const unicos = new Set([1, 2, 2, 3, 3, 4]);\nconsole.log(unicos.size); // ¿Qué tamaño tendrá?",
+      "options": [
+        { "id": "opt1", "text": "Almacena únicamente valores únicos sin duplicados", "isCorrect": true },
+        { "id": "opt2", "text": "Ordena los elementos por orden alfabético estricto", "isCorrect": false },
+        { "id": "opt3", "text": "Permite acceder a los elementos mediante índices numéricos directos", "isCorrect": false },
+        { "id": "opt4", "text": "Sincroniza automáticamente los datos con el almacenamiento local", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! Un 'Set' rechaza automáticamente cualquier elemento duplicado.",
+        "error": "Incorrecto: La propiedad fundamental de un 'Set' es garantizar valores únicos."
+      }
+    }
+  ]
+}

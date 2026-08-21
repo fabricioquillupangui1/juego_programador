@@ -1,0 +1,367 @@
+{
+  "levelId": 3,
+  "title": "NIVEL 3: BASES DE DATOS SQL",
+  "description": "Consultas SQL, Filtrado DDL/DML y Relaciones de Bases de Datos",
+  "games": [
+    {
+      "gameId": "game_1_sqlrunner",
+      "type": "single_choice",
+      "title": "SQL Query Runner",
+      "instruction": "Necesitas consultar únicamente a los estudiantes activos del instituto. Selecciona la cláusula que falta.",
+      "codeSnippet": "SELECT nickname, score \nFROM usuarios \n/* ??? */ status = 'ACTIVE' \nORDER BY score DESC;",
+      "options": [
+        { "id": "opt1", "text": "WHERE", "isCorrect": true },
+        { "id": "opt2", "text": "HAVING", "isCorrect": false },
+        { "id": "opt3", "text": "GROUP BY", "isCorrect": false },
+        { "id": "opt4", "text": "FILTER BY", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Consulta ejecutada! 'WHERE' filtra las filas antes de agrupar o procesar.",
+        "error": "Sintaxis SQL inválida: 'WHERE' es la palabra clave para filtrar filas por condición."
+      }
+    },
+    {
+      "gameId": "game_2_relational",
+      "type": "single_choice",
+      "title": "Relational Connector",
+      "instruction": "Para vincular la tabla 'Calificaciones' con la tabla 'Estudiantes', ¿qué identificador debes definir como Foreign Key (FK)?",
+      "codeSnippet": "-- Tabla: Estudiantes (id_estudiante PK, nombre, correo)\n-- Tabla: Calificaciones (id_nota PK, nota, /* ??? */ FK)",
+      "options": [
+        { "id": "opt1", "text": "id_estudiante", "isCorrect": true },
+        { "id": "opt2", "text": "id_nota", "isCorrect": false },
+        { "id": "opt3", "text": "nombre", "isCorrect": false },
+        { "id": "opt4", "text": "correo", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Relación correcta! La llave primaria 'id_estudiante' conecta ambas tablas como FK.",
+        "error": "Error de modelado: Para relacionar tablas se utiliza la Primary Key de la tabla padre."
+      }
+    },
+    {
+      "gameId": "game_3_insertdml",
+      "type": "single_choice",
+      "title": "Inyección DML",
+      "instruction": "Estás registrando un nuevo usuario en la base de datos mediante DML. ¿Qué comando completa la instrucción?",
+      "codeSnippet": "[COMANDO] INTO usuarios (nombre, email, status)\nVALUES ('Carlos', 'carlos@mail.com', 'ACTIVE');",
+      "options": [
+        { "id": "opt1", "text": "INSERT", "isCorrect": true },
+        { "id": "opt2", "text": "ADD", "isCorrect": false },
+        { "id": "opt3", "text": "UPDATE", "isCorrect": false },
+        { "id": "opt4", "text": "CREATE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'INSERT INTO' es el comando DML para agregar registros a una tabla.",
+        "error": "Incorrecto: Para insertar nuevos registros se utiliza la sentencia INSERT."
+      }
+    },
+    {
+      "gameId": "game_4_selectaggregate",
+      "type": "single_choice",
+      "title": "Funciones de Agregación",
+      "instruction": "¿Qué función de agregación SQL se debe utilizar para obtener el promedio de puntajes (score) de los usuarios?",
+      "codeSnippet": "SELECT [FUNCION](score) AS promedio_score \nFROM usuarios;",
+      "options": [
+        { "id": "opt1", "text": "AVG", "isCorrect": true },
+        { "id": "opt2", "text": "MEAN", "isCorrect": false },
+        { "id": "opt3", "text": "MEDIAN", "isCorrect": false },
+        { "id": "opt4", "text": "SUM", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! La función 'AVG' calcula la media aritmética de una columna numérica.",
+        "error": "Incorrecto: En SQL estándar el promedio se obtiene mediante la función AVG."
+      }
+    },
+    {
+      "gameId": "game_5_groupby",
+      "type": "single_choice",
+      "title": "Agrupamiento de Datos",
+      "instruction": "Necesitas contar cuántos usuarios existen por cada rol diferente. ¿Qué cláusula agrupa el resultado?",
+      "codeSnippet": "SELECT rol, COUNT(*) \nFROM usuarios \n[CLAUSULA] rol;",
+      "options": [
+        { "id": "opt1", "text": "GROUP BY", "isCorrect": true },
+        { "id": "opt2", "text": "ORDER BY", "isCorrect": false },
+        { "id": "opt3", "text": "CLUSTER BY", "isCorrect": false },
+        { "id": "opt4", "text": "PARTITION BY", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'GROUP BY' agrupa filas que comparten un mismo valor en columnas específicas.",
+        "error": "Incorrecto: El agrupamiento para funciones de conteo se realiza con GROUP BY."
+      }
+    },
+    {
+      "gameId": "game_6_havingclause",
+      "type": "single_choice",
+      "title": "Filtrado Post-Agrupación",
+      "instruction": "¿Qué cláusula se utiliza para filtrar los resultados despuéS de haber aplicado un 'GROUP BY'?",
+      "codeSnippet": "SELECT rol, COUNT(*) as total \nFROM usuarios \nGROUP BY rol \n[CLAUSULA] total > 5;",
+      "options": [
+        { "id": "opt1", "text": "HAVING", "isCorrect": true },
+        { "id": "opt2", "text": "WHERE", "isCorrect": false },
+        { "id": "opt3", "text": "FILTER", "isCorrect": false },
+        { "id": "opt4", "text": "LIMIT", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! 'HAVING' permite filtrar condiciones sobre funciones de agregación.",
+        "error": "Incorrecto: 'WHERE' no puede evaluar agregaciones directamente; para eso se usa HAVING."
+      }
+    },
+    {
+      "gameId": "game_7_innerjoin",
+      "type": "single_choice",
+      "title": "Uniones de Tablas (INNER JOIN)",
+      "instruction": "¿Qué tipo de JOIN devuelve únicamente los registros que tienen coincidencias en ambas tablas relacionadas?",
+      "codeSnippet": "SELECT u.nombre, p.detalles \nFROM usuarios u \n[JOIN_TYPE] perfiles p ON u.id = p.usuario_id;",
+      "options": [
+        { "id": "opt1", "text": "INNER JOIN", "isCorrect": true },
+        { "id": "opt2", "text": "LEFT JOIN", "isCorrect": false },
+        { "id": "opt3", "text": "FULL OUTER JOIN", "isCorrect": false },
+        { "id": "opt4", "text": "CROSS JOIN", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'INNER JOIN' filtra la intersección exacta entre las tablas.",
+        "error": "Incorrecto: El tipo de unión para coincidencias mutuas es INNER JOIN."
+      }
+    },
+    {
+      "gameId": "game_8_leftjoin",
+      "type": "single_choice",
+      "title": "Uniones Externas (LEFT JOIN)",
+      "instruction": "Si usas un LEFT JOIN, ¿qué sucede con los registros de la tabla izquierda que no tienen correspondencia en la derecha?",
+      "codeSnippet": "SELECT * FROM clientes c \nLEFT JOIN pedidos p ON c.id = p.cliente_id;",
+      "options": [
+        { "id": "opt1", "text": "Aparecen igual, rellenando con NULL las columnas de la tabla derecha", "isCorrect": true },
+        { "id": "opt2", "text": "Se eliminan por completo del resultado de la consulta", "isCorrect": false },
+        { "id": "opt3", "text": "Generan un error crítico de sintaxis en el motor SQL", "isCorrect": false },
+        { "id": "opt4", "text": "Se convierten automáticamente en registros duplicados", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! El LEFT JOIN preserva toda la tabla izquierda completando con NULL los vacíos.",
+        "error": "Incorrecto: Los registros de la izquierda se mantienen siempre, asignando NULL si no hay match."
+      }
+    },
+    {
+      "gameId": "game_9_updatedml",
+      "type": "single_choice",
+      "title": "Actualización de Registros",
+      "instruction": "Necesitas modificar el correo de un usuario específico. ¿Qué cláusula es obligatoria para evitar actualizar toda la tabla por error?",
+      "codeSnippet": "UPDATE usuarios \nSET email = 'nuevo@mail.com' \n/* ¿Qué cláusula previene un desastre? */ id = 42;",
+      "options": [
+        { "id": "opt1", "text": "WHERE", "isCorrect": true },
+        { "id": "opt2", "text": "LIMIT", "isCorrect": false },
+        { "id": "opt3", "text": "CHECK", "isCorrect": false },
+        { "id": "opt4", "text": "CONDITION", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! Nunca olvides el WHERE en un UPDATE para acotar la modificación.",
+        "error": "Incorrecto: Sin un WHERE actualizarías todos los registros de la tabla."
+      }
+    },
+    {
+      "gameId": "game_10_deletedml",
+      "type": "single_choice",
+      "title": "Eliminación Segura (DELETE)",
+      "instruction": "¿Qué sentencia DML se utiliza para borrar registros específicos de una tabla?",
+      "codeSnippet": "[COMANDO] FROM registros_logs \nWHERE fecha < '2025-01-01';",
+      "options": [
+        { "id": "opt1", "text": "DELETE", "isCorrect": true },
+        { "id": "opt2", "text": "DROP", "isCorrect": false },
+        { "id": "opt3", "text": "REMOVE", "isCorrect": false },
+        { "id": "opt4", "text": "TRUNCATE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'DELETE FROM' elimina filas cumpliendo filtros específicos.",
+        "error": "Incorrecto: 'DROP' elimina estructuras completas (DDL), mientras 'DELETE' borra registros (DML)."
+      }
+    },
+    {
+      "gameId": "game_11_ddltable",
+      "type": "single_choice",
+      "title": "Creación de Estructuras (DDL)",
+      "instruction": "¿Qué instrucción DDL se utiliza para crear una nueva tabla en la base de datos?",
+      "codeSnippet": "[INSTRUCCION] tabla_cursos (\n  id INT PRIMARY KEY,\n  nombre VARCHAR(100)\n);",
+      "options": [
+        { "id": "opt1", "text": "CREATE TABLE", "isCorrect": true },
+        { "id": "opt2", "text": "NEW TABLE", "isCorrect": false },
+        { "id": "opt3", "text": "MAKE TABLE", "isCorrect": false },
+        { "id": "opt4", "text": "ALTER TABLE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! 'CREATE TABLE' define la estructura y tipos de datos iniciales.",
+        "error": "Incorrecto: Para inicializar una tabla se emplea la sentencia CREATE TABLE."
+      }
+    },
+    {
+      "gameId": "game_12_primarykey",
+      "type": "single_choice",
+      "title": "Llave Primaria (PK)",
+      "instruction": "¿Cuál es la función principal de una restricción PRIMARY KEY en una tabla?",
+      "codeSnippet": "id_usuario INT PRIMARY KEY AUTO_INCREMENT",
+      "options": [
+        { "id": "opt1", "text": "Identificar única e inequívocamente cada fila y prohibir nulos", "isCorrect": true },
+        { "id": "opt2", "text": "Acelerar únicamente las búsquedas de texto plano", "isCorrect": false },
+        { "id": "opt3", "text": "Permitir valores duplicados opcionales", "isCorrect": false },
+        { "id": "opt4", "text": "Vincular automáticamente con archivos externos", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! La PK garantiza unicidad y previene valores nulos en el identificador.",
+        "error": "Incorrecto: La llave primaria asegura que cada registro sea único y no nulo."
+      }
+    },
+    {
+      "gameId": "game_13_altertable",
+      "type": "single_choice",
+      "title": "Modificación DDL (ALTER)",
+      "instruction": "Necesitas agregar una nueva columna llamada 'telefono' a una tabla existente. ¿Qué comando DDL empleas?",
+      "codeSnippet": "[COMANDO] usuarios \nADD COLUMN telefono VARCHAR(20);",
+      "options": [
+        { "id": "opt1", "text": "ALTER TABLE", "isCorrect": true },
+        { "id": "opt2", "text": "UPDATE TABLE", "isCorrect": false },
+        { "id": "opt3", "text": "MODIFY TABLE", "isCorrect": false },
+        { "id": "opt4", "text": "CHANGE TABLE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! 'ALTER TABLE' permite modificar la estructura de una tabla existente.",
+        "error": "Incorrecto: Para cambios estructurales se utiliza ALTER TABLE."
+      }
+    },
+    {
+      "gameId": "game_14_orderby",
+      "type": "single_choice",
+      "title": "Ordenamiento de Resultados",
+      "instruction": "¿Qué modificador se añade al final de ORDER BY para ordenar los resultados de forma descendente (de mayor a menor)?",
+      "codeSnippet": "SELECT * FROM productos \nORDER BY precio [MODIFICADOR];",
+      "options": [
+        { "id": "opt1", "text": "DESC", "isCorrect": true },
+        { "id": "opt2", "text": "ASC", "isCorrect": false },
+        { "id": "opt3", "text": "DOWN", "isCorrect": false },
+        { "id": "opt4", "text": "REVERSE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'DESC' ordena de forma descendente, mientras que 'ASC' es ascendente.",
+        "error": "Incorrecto: El modificador para orden descendente es DESC."
+      }
+    },
+    {
+      "gameId": "game_15_limitclause",
+      "type": "single_choice",
+      "title": "Paginación y Límites",
+      "instruction": "Quieres consultar únicamente los 5 productos más caros de la tienda. ¿Qué cláusula limita el número de filas devueltas?",
+      "codeSnippet": "SELECT * FROM productos \nORDER BY precio DESC \n[CLAUSULA] 5;",
+      "options": [
+        { "id": "opt1", "text": "LIMIT", "isCorrect": true },
+        { "id": "opt2", "text": "TOP", "isCorrect": false },
+        { "id": "opt3", "text": "RANGE", "isCorrect": false },
+        { "id": "opt4", "text": "ROWS", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! 'LIMIT' restringe la cantidad máxima de filas devueltas por la consulta.",
+        "error": "Incorrecto: En bases de datos como MySQL y PostgreSQL se utiliza LIMIT."
+      }
+    },
+    {
+      "gameId": "game_16_likeoperator",
+      "type": "single_choice",
+      "title": "Búsqueda por Patrones (LIKE)",
+      "instruction": "¿Qué operador SQL se usa junto con comodines (%) para buscar coincidencias parciales de texto?",
+      "codeSnippet": "SELECT * FROM usuarios \nWHERE nombre [OPERADOR] 'Carlos%';",
+      "options": [
+        { "id": "opt1", "text": "LIKE", "isCorrect": true },
+        { "id": "opt2", "text": "MATCH", "isCorrect": false },
+        { "id": "opt3", "text": "CONTAINS", "isCorrect": false },
+        { "id": "opt4", "text": "SIMILAR", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'LIKE' permite filtrar texto mediante patrones y comodines.",
+        "error": "Incorrecto: La búsqueda por patrones de texto se efectúa con el operador LIKE."
+      }
+    },
+    {
+      "gameId": "game_17_distinct",
+      "type": "single_choice",
+      "title": "Valores Únicos (DISTINCT)",
+      "instruction": "La consulta devuelve muchas ciudades repetidas. ¿Qué palabra clave filtra el resultado para mostrar solo valores únicos?",
+      "codeSnippet": "SELECT [KEYWORD] ciudad \nFROM sucursales;",
+      "options": [
+        { "id": "opt1", "text": "DISTINCT", "isCorrect": true },
+        { "id": "opt2", "text": "UNIQUE", "isCorrect": false },
+        { "id": "opt3", "text": "DIFFERENT", "isCorrect": false },
+        { "id": "opt4", "text": "GROUP", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! 'DISTINCT' elimina las filas duplicadas del conjunto de resultados.",
+        "error": "Incorrecto: Para descartar duplicados en una consulta se antepone DISTINCT."
+      }
+    },
+    {
+      "gameId": "game_18_nullcheck",
+      "type": "single_choice",
+      "title": "Evaluación de Nulos",
+      "instruction": "¿Por qué es incorrecto usar 'WHERE correo = NULL' y qué operador se debe emplear?",
+      "codeSnippet": "SELECT * FROM usuarios \nWHERE correo [OPERADOR] NULL;",
+      "options": [
+        { "id": "opt1", "text": "IS NULL (NULL representa ausencia de valor y no se compara con '=')", "isCorrect": true },
+        { "id": "opt2", "text": "EQUALS NULL (porque SQL requiere la palabra EQUALS)", "isCorrect": false },
+        { "id": "opt3", "text": "AS NULL (porque redefine el tipo de dato)", "isCorrect": false },
+        { "id": "opt4", "text": "CHECK NULL (porque evalúa restricciones lógicas)", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! En SQL, NULL es un estado especial y se valida estrictamente con 'IS NULL'.",
+        "error": "Incorrecto: Los nulos no pueden evaluarse con operadores de igualdad tradicionales, se usa IS NULL."
+      }
+    },
+    {
+      "gameId": "game_19_inoperator",
+      "type": "single_choice",
+      "title": "Operador IN",
+      "instruction": "¿Qué operador simplifica la comprobación de múltiples condiciones OR sobre una misma columna?",
+      "codeSnippet": "SELECT * FROM usuarios \nWHERE rol [OPERADOR] ('ADMIN', 'DEV', 'MOD');",
+      "options": [
+        { "id": "opt1", "text": "IN", "isCorrect": true },
+        { "id": "opt2", "text": "BETWEEN", "isCorrect": false },
+        { "id": "opt3", "text": "WITH", "isCorrect": false },
+        { "id": "opt4", "text": "AMONG", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! El operador 'IN' comprueba si un valor coincide con cualquiera de los elementos de una lista.",
+        "error": "Incorrecto: Para evaluar pertenencia a un conjunto de valores se utiliza el operador IN."
+      }
+    },
+    {
+      "gameId": "game_20_transactions",
+      "type": "single_choice",
+      "title": "Control de Transacciones (ACID)",
+      "instruction": "¿Qué sentencia SQL confirma de forma definitiva y permanente los cambios realizados en una transacción?",
+      "codeSnippet": "BEGIN TRANSACTION;\n-- operaciones DML...\n[CONFIRMACION];",
+      "options": [
+        { "id": "opt1", "text": "COMMIT", "isCorrect": true },
+        { "id": "opt2", "text": "ROLLBACK", "isCorrect": false },
+        { "id": "opt3", "text": "SAVEPOINT", "isCorrect": false },
+        { "id": "opt4", "text": "FLUSH", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Perfecto! 'COMMIT' consolida los cambios de la transacción actual en la base de datos.",
+        "error": "Incorrecto: 'ROLLBACK' revierte los cambios, mientras que 'COMMIT' los confirma permanentemente."
+      }
+    }
+  ]
+}

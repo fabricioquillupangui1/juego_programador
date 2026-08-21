@@ -1,0 +1,367 @@
+{
+  "levelId": 4,
+  "title": "NIVEL 4: REDES Y SOPORTE IT",
+  "description": "Consola de Comandos Linux, Servidores y Gestión Metodología Scrum",
+  "games": [
+    {
+      "gameId": "game_1_terminal",
+      "type": "single_choice",
+      "title": "Terminal Rescue",
+      "instruction": "El servidor web deniega el acceso al script ejecutable. ¿Qué comando otorga permisos de ejecución al archivo?",
+      "codeSnippet": "$ ./deploy.sh\nbash: ./deploy.sh: Permission denied\n$ /* ??? */ deploy.sh",
+      "options": [
+        { "id": "opt1", "text": "chmod +x", "isCorrect": true },
+        { "id": "opt2", "text": "chown -R", "isCorrect": false },
+        { "id": "opt3", "text": "sudo rm", "isCorrect": false },
+        { "id": "opt4", "text": "cat --exec", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Permisos concedidos! 'chmod +x' añade el atributo de ejecución al script.",
+        "error": "Comando erróneo: 'chmod +x' asigna permisos para ejecutar archivos en Linux."
+      }
+    },
+    {
+      "gameId": "game_2_sprint",
+      "type": "single_choice",
+      "title": "Sprint Master",
+      "instruction": "Una tarea técnica ha sido completada, probada y desplegada en producción. ¿En qué columna del tablero Kanban debe ubicarse?",
+      "codeSnippet": "Tablero Scrum: [ Product Backlog ] -> [ To Do ] -> [ In Progress ] -> [ ??? ]",
+      "options": [
+        { "id": "opt1", "text": "Done", "isCorrect": true },
+        { "id": "opt2", "text": "Testing", "isCorrect": false },
+        { "id": "opt3", "text": "In Progress", "isCorrect": false },
+        { "id": "opt4", "text": "Blocked", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Sprint completado! Las historias finalizadas y validadas pasan a 'Done'.",
+        "error": "Estado no correspondiente: Si la tarea ya está desplegada y probada, pertenece a 'Done'."
+      }
+    },
+    {
+      "gameId": "game_3_ipconfig",
+      "type": "single_choice",
+      "title": "Diagnóstico de Red (IP)",
+      "instruction": "¿Qué comando de la terminal de Linux se utiliza para verificar la configuración de las interfaces de red y la dirección IP actual?",
+      "codeSnippet": "$ [COMANDO]\neth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500\n        inet 192.168.1.50  netmask 255.255.255.0",
+      "options": [
+        { "id": "opt1", "text": "ip a (o ifconfig)", "isCorrect": true },
+        { "id": "opt2", "text": "ping -network", "isCorrect": false },
+        { "id": "opt3", "text": "netstat --show", "isCorrect": false },
+        { "id": "opt4", "text": "route -view", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'ip a' o 'ifconfig' muestran el estado y direccionamiento de las interfaces de red.",
+        "error": "Incorrecto: El comando estándar para visualizar direcciones de red en Linux es ip a."
+      }
+    },
+    {
+      "gameId": "game_4_pingtest",
+      "type": "single_choice",
+      "title": "Prueba de Conectividad",
+      "instruction": "¿Qué utilidad de red se emplea para comprobar la accesibilidad de otro host en la red mediante el envío de paquetes ICMP?",
+      "codeSnippet": "$ [COMANDO] 8.8.8.8\nPING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.",
+      "options": [
+        { "id": "opt1", "text": "ping", "isCorrect": true },
+        { "id": "opt2", "text": "traceroute", "isCorrect": false },
+        { "id": "opt3", "text": "nslookup", "isCorrect": false },
+        { "id": "opt4", "text": "netcat", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! 'ping' mide la latencia y verifica si hay conexión activa con un destino.",
+        "error": "Incorrecto: Para enviar paquetes de eco ICMP se utiliza el comando ping."
+      }
+    },
+    {
+      "gameId": "game_5_dnslookup",
+      "type": "single_choice",
+      "title": "Resolución DNS",
+      "instruction": "¿Qué herramienta de soporte IT permite consultar información de los servidores DNS para resolver un nombre de dominio?",
+      "codeSnippet": "$ [COMANDO] api.ternuritabebe.com\nServer:  8.8.8.8\nAddress: 8.8.8.8#53",
+      "options": [
+        { "id": "opt1", "text": "nslookup (o dig)", "isCorrect": true },
+        { "id": "opt2", "text": "tracert --dns", "isCorrect": false },
+        { "id": "opt3", "text": "ipconfig /dns", "isCorrect": false },
+        { "id": "opt4", "text": "tcpdump", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! 'nslookup' y 'dig' diagnostican problemas de resolución de nombres de dominio.",
+        "error": "Incorrecto: La consulta directa a servidores de nombres se realiza con nslookup."
+      }
+    },
+    {
+      "gameId": "game_6_ports",
+      "type": "single_choice",
+      "title": "Puertos de Red Estándar",
+      "instruction": "¿Cuál es el número de puerto predeterminado estándar utilizado para conexiones seguras mediante el protocolo HTTPS?",
+      "codeSnippet": "URL: https://mi-servidor.com\nPuerto por defecto: [PUERTO]",
+      "options": [
+        { "id": "opt1", "text": "443", "isCorrect": true },
+        { "id": "opt2", "text": "80", "isCorrect": false },
+        { "id": "opt3", "text": "22", "isCorrect": false },
+        { "id": "opt4", "text": "3306", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El puerto 443 atiende tráfico web cifrado (HTTPS), mientras que el 80 es para HTTP.",
+        "error": "Incorrecto: Recuerda que HTTPS utiliza el puerto 443 de manera predeterminada."
+      }
+    },
+    {
+      "gameId": "game_7_sshaccess",
+      "type": "single_choice",
+      "title": "Acceso Remoto Seguro",
+      "instruction": "¿Qué protocolo y puerto se utilizan habitualmente en Linux para la administración remota segura de servidores por consola?",
+      "codeSnippet": "$ ssh usuario@192.168.1.100 -p [PUERTO]",
+      "options": [
+        { "id": "opt1", "text": "SSH - Puerto 22", "isCorrect": true },
+        { "id": "opt2", "text": "Telnet - Puerto 23", "isCorrect": false },
+        { "id": "opt3", "text": "FTP - Puerto 21", "isCorrect": false },
+        { "id": "opt4", "text": "RDP - Puerto 3389", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! SSH opera de forma cifrada a través del puerto 22.",
+        "error": "Incorrecto: La administración remota segura por consola se realiza mediante SSH en el puerto 22."
+      }
+    },
+    {
+      "gameId": "game_8_linuxlogs",
+      "type": "single_choice",
+      "title": "Monitoreo de Logs en Tiempo Real",
+      "instruction": "¿Qué comando de Linux permite visualizar en tiempo real las últimas líneas de un archivo de registro (log) del sistema?",
+      "codeSnippet": "$ [COMANDO] -f /var/log/syslog",
+      "options": [
+        { "id": "opt1", "text": "tail", "isCorrect": true },
+        { "id": "opt2", "text": "head", "isCorrect": false },
+        { "id": "opt3", "text": "cat", "isCorrect": false },
+        { "id": "opt4", "text": "grep", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! 'tail -f' sigue el flujo dinámico de los archivos de registro.",
+        "error": "Incorrecto: Para ver el final de un archivo en tiempo real se utiliza el comando tail."
+      }
+    },
+    {
+      "gameId": "game_9_processkill",
+      "type": "single_choice",
+      "title": "Gestión de Procesos (Kill)",
+      "instruction": "¿Qué comando se usa para enviar una señal de interrupción o terminación a un proceso bloqueado conociendo su PID?",
+      "codeSnippet": "$ [COMANDO] -9 4182",
+      "options": [
+        { "id": "opt1", "text": "kill", "isCorrect": true },
+        { "id": "opt2", "text": "stop", "isCorrect": false },
+        { "id": "opt3", "text": "halt", "isCorrect": false },
+        { "id": "opt4", "text": "remove", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Muy bien! 'kill -9' fuerza la finalización de un proceso colgado.",
+        "error": "Incorrecto: El comando para finalizar procesos por PID en Linux es kill."
+      }
+    },
+    {
+      "gameId": "game_10_diskspace",
+      "type": "single_choice",
+      "title": "Auditoría de Almacenamiento",
+      "instruction": "¿Qué comando de la terminal permite verificar el espacio disponible y el uso de los sistemas de archivos montados?",
+      "codeSnippet": "$ [COMANDO] -h\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        50G   35G   12G  75% /",
+      "options": [
+        { "id": "opt1", "text": "df", "isCorrect": true },
+        { "id": "opt2", "text": "du", "isCorrect": false },
+        { "id": "opt3", "text": "free", "isCorrect": false },
+        { "id": "opt4", "text": "lsblk", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! 'df -h' muestra el reporte de espacio libre en disco de forma legible.",
+        "error": "Incorrecto: 'df' evalúa particiones y espacio global, mientras 'du' mide carpetas específicas."
+      }
+    },
+    {
+      "gameId": "game_11_scrumroles",
+      "type": "single_choice",
+      "title": "Roles en Scrum: Product Owner",
+      "instruction": "En la metodología ágil Scrum, ¿cuál es la responsabilidad principal del Product Owner (PO)?",
+      "codeSnippet": "Gestión del Proyecto Ágil -> [ Product Owner ] vs [ Scrum Master ] vs [ Equipo ]",
+      "options": [
+        { "id": "opt1", "text": "Gestionar, priorizar y definir los elementos del Product Backlog", "isCorrect": true },
+        { "id": "opt2", "text": "Escribir todo el código fuente y las pruebas unitarias", "isCorrect": false },
+        { "id": "opt3", "text": "Sancionar y evaluar el rendimiento salarial de los desarrolladores", "isCorrect": false },
+        { "id": "opt4", "text": "Instalar los servidores físicos y configurar los routers", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El Product Owner maximiza el valor del producto gestionando el backlog.",
+        "error": "Incorrecto: El PO se centra en la visión del producto y el backlog, no en tareas técnicas."
+      }
+    },
+    {
+      "gameId": "game_12_scrummaster",
+      "type": "single_choice",
+      "title": "Roles en Scrum: Scrum Master",
+      "instruction": "¿Cuál es el rol principal del Scrum Master dentro de un equipo de desarrollo ágil?",
+      "codeSnippet": "Facilitación del Marco Scrum -> ¿Quién elimina impedimentos y asegura el cumplimiento del marco?",
+      "options": [
+        { "id": "opt1", "text": "Facilitar los eventos y eliminar impedimentos (bloqueos) del equipo", "isCorrect": true },
+        { "id": "opt2", "text": "Imponer requerimientos técnicos y plazos estrictos de entrega", "isCorrect": false },
+        { "id": "opt3", "text": "Diseñar la interfaz gráfica de usuario en Figma", "isCorrect": false },
+        { "id": "opt4", "text": "Comprar las licencias de software de la empresa", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! El Scrum Master actúa como líder servicial facilitando el proceso ágil.",
+        "error": "Incorrecto: El Scrum Master protege al equipo de distracciones y elimina bloqueos operativos."
+      }
+    },
+    {
+      "gameId": "game_13_sprintplanning",
+      "type": "single_choice",
+      "title": "Ceremonias Scrum: Sprint Planning",
+      "instruction": "¿Qué objetivo fundamental se persigue en la reunión de Planificación del Sprint (Sprint Planning)?",
+      "codeSnippet": "Sprint Planning -> ¿Qué trabajo se seleccionará para realizar en el próximo incremento?",
+      "options": [
+        { "id": "opt1", "text": "Definir el objetivo del sprint y seleccionar las historias de usuario del backlog", "isCorrect": true },
+        { "id": "opt2", "text": "Celebrar una fiesta al finalizar la entrega comercial", "isCorrect": false },
+        { "id": "opt3", "text": "Despedir a los miembros del equipo que no cumplieron métricas", "isCorrect": false },
+        { "id": "opt4", "text": "Instalar parches de seguridad en los equipos de soporte", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! En la planificación se acuerda el alcance de trabajo que el equipo se compromete a entregar.",
+        "error": "Incorrecto: La planificación define qué se va a hacer en el sprint y cómo se abordará."
+      }
+    },
+    {
+      "gameId": "game_14_dailystandup",
+      "type": "single_choice",
+      "title": "Ceremonias Scrum: Daily Standup",
+      "instruction": "¿Cuál es la característica principal de la reunión diaria (Daily Scrum / Standup)?",
+      "codeSnippet": "Daily Scrum -> Duración máxima recomendada: 15 minutos sincronizando el progreso diario.",
+      "options": [
+        { "id": "opt1", "text": "Sincronizar el trabajo diario, detectar impedimentos y planificar las próximas 24 horas", "isCorrect": true },
+        { "id": "opt2", "text": "Una conferencia técnica de 3 horas para refactorizar bases de datos", "isCorrect": false },
+        { "id": "opt3", "text": "Una junta directiva para evaluar despidos y ascensos gerenciales", "isCorrect": false },
+        { "id": "opt4", "text": "Un reporte exhaustivo de atención al cliente de soporte técnico", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! La Daily es una sincronización rápida y ágil de pie para todo el equipo.",
+        "error": "Incorrecto: La Daily es breve (15 min) y enfocada en sincronizar al equipo de desarrollo."
+      }
+    },
+    {
+      "gameId": "game_15_sprintreview",
+      "type": "single_choice",
+      "title": "Ceremonias Scrum: Sprint Review",
+      "instruction": "¿Qué actividad se realiza principalmente durante la reunión de revisión del sprint (Sprint Review)?",
+      "codeSnippet": "Sprint Review -> Demostración del incremento de producto funcional a los stakeholders.",
+      "options": [
+        { "id": "opt1", "text": "Inspeccionar el incremento de producto junto con los stakeholders y adaptar el backlog", "isCorrect": true },
+        { "id": "opt2", "text": "Debatir problemas interpersonales y discutir culpables de errores", "isCorrect": false },
+        { "id": "opt3", "text": "Configurar las reglas de enrutamiento de los switches de red", "isCorrect": false },
+        { "id": "opt4", "text": "Firmar contratos comerciales de venta con clientes externos", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! La Review sirve para mostrar el trabajo terminado y recibir feedback directo.",
+        "error": "Incorrecto: La Sprint Review se enfoca en la demo del producto y la colaboración con interesados."
+      }
+    },
+    {
+      "gameId": "game_16_retrospective",
+      "type": "single_choice",
+      "title": "Ceremonias Scrum: Retrospectiva",
+      "instruction": "¿Cuál es el propósito central de la Retrospectiva del Sprint (Sprint Retrospective)?",
+      "codeSnippet": "Sprint Retrospective -> Mejora continua de personas, relaciones, procesos y herramientas.",
+      "options": [
+        { "id": "opt1", "text": "Analizar cómo fue el último sprint en cuanto a personas y procesos para plan de mejora", "isCorrect": true },
+        { "id": "opt2", "text": "Evaluar la velocidad de procesamiento de los servidores web", "isCorrect": false },
+        { "id": "opt3", "text": "Negociar el presupuesto anual con la gerencia financiera", "isCorrect": false },
+        { "id": "opt4", "text": "Corregir los bugs reportados por usuarios finales en producción", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Excelente! La retro busca la mejora continua inspeccionando la dinámica de trabajo.",
+        "error": "Incorrecto: La retrospectiva analiza el lado humano y procedimental del equipo para mejorar."
+      }
+    },
+    {
+      "gameId": "game_17_helpdesk",
+      "type": "single_choice",
+      "title": "Soporte IT: Gestión de Incidentes",
+      "instruction": "En una mesa de ayuda (Help Desk), ¿qué define correctamente a un 'Incidente' frente a una 'Solicitud de Servicio'?",
+      "codeSnippet": "Help Desk Ticketing -> Incidente: Interrupción no planificada del servicio IT.",
+      "options": [
+        { "id": "opt1", "text": "Una interrupción no planificada o reducción en la calidad de un servicio IT", "isCorrect": true },
+        { "id": "opt2", "text": "La petición de un nuevo computador o software para un empleado nuevo", "isCorrect": false },
+        { "id": "opt3", "text": "La planificación de una ceremonia ágil Scrum trimestral", "isCorrect": false },
+        { "id": "opt4", "text": "La ejecución de un respaldo completo de base de datos programado", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! Un incidente es una falla o corte imprevisto que debe resolverse para restaurar el servicio.",
+        "error": "Incorrecto: Las peticiones de elementos nuevos son solicitudes, las fallas imprevistas son incidentes."
+      }
+    },
+    {
+      "gameId": "game_18_backupstrategy",
+      "type": "single_choice",
+      "title": "Estrategias de Respaldo (Backup)",
+      "instruction": "¿Qué tipo de copia de seguridad (backup) respalda únicamente los datos que han cambiado desde el último respaldo completo?",
+      "codeSnippet": "Estrategia Backup -> [ Completo ] -> [ Copia Diferencial o Incremental ]",
+      "options": [
+        { "id": "opt1", "text": "Respaldo Diferencial (o Incremental según enfoque de cambios)", "isCorrect": true },
+        { "id": "opt2", "text": "Respaldo Espejo de Solo Lectura", "isCorrect": false },
+        { "id": "opt3", "text": "Copia de partición física en crudo (Raw)", "isCorrect": false },
+        { "id": "opt4", "text": "Volcado de memoria caché RAM", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Exacto! Los respaldos diferenciales e incrementales optimizan tiempo y espacio guardando variaciones.",
+        "error": "Incorrecto: Respaldar solo las modificaciones evita repetir todo el volumen de datos innecesariamente."
+      }
+    },
+    {
+      "gameId": "game_19_firewall",
+      "type": "single_choice",
+      "title": "Seguridad Perimetral (Firewall)",
+      "instruction": "¿Cuál es la función principal de un Firewall (cortafuegos) en la infraestructura de redes y servidores?",
+      "codeSnippet": "Firewall Rules -> Filtrado de tráfico basado en direcciones IP, puertos y protocolos.",
+      "options": [
+        { "id": "opt1", "text": "Filtrar el tráfico de red entrante y saliente aplicando reglas de seguridad predefinidas", "isCorrect": true },
+        { "id": "opt2", "text": "Acelerar la velocidad de descarga de archivos pesados en fibra óptica", "isCorrect": false },
+        { "id": "opt3", "text": "Eliminar virus informáticos residentes en la memoria RAM del equipo", "isCorrect": false },
+        { "id": "opt4", "text": "Optimizar las consultas SQL complejas en bases de datos relacionales", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Correcto! El firewall protege el perímetro controlando qué conexiones se permiten o bloquean.",
+        "error": "Incorrecto: Su función es controlar y filtrar el flujo de red según políticas de seguridad."
+      }
+    },
+    {
+      "gameId": "game_20_virtualization",
+      "type": "single_choice",
+      "title": "Virtualización y Contenedores",
+      "instruction": "¿Qué tecnología ligera de virtualización a nivel de sistema operativo permite empaquetar aplicaciones junto con sus dependencias en contenedores?",
+      "codeSnippet": "Despliegue IT -> Contenedores portables y aislados (ej. Docker)",
+      "options": [
+        { "id": "opt1", "text": "Docker (Contenedores)", "isCorrect": true },
+        { "id": "opt2", "text": "BIOS / UEFI nativo", "isCorrect": false },
+        { "id": "opt3", "text": "Cableado estructurado UTP Cat 6", "isCorrect": false },
+        { "id": "opt4", "text": "Arquitectura de disco duro IDE", "isCorrect": false }
+      ],
+      "points": 50,
+      "feedback": {
+        "success": "¡Perfecto! Docker y los contenedores estandarizan el despliegue de software de forma aislada y ligera.",
+        "error": "Incorrecto: La tecnología líder de contenedores ligeros es Docker."
+      }
+    }
+  ]
+}
