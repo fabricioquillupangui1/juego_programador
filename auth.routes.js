@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { supabase } from '../config/supabase.js';
+import { supabase } from './supabase.js'; // ✅ Lo busca directo en la misma raíz
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'codigo_zero_secret_key_2026';
