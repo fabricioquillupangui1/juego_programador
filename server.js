@@ -46,12 +46,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Arrancar el servidor Node.js
-app.listen(PORT, () => {
-  console.log(`
-  ======================================================
-  🚀 CÓDIGO ZERO: EL DESAFÍO
-  👉 Servidor ejecutándose en: http://localhost:${PORT}
-  ======================================================
-  `);
-});
+// Arrancar el servidor solo si estamos en local (no en Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`
+    ======================================================
+    🚀 CÓDIGO ZERO: EL DESAFÍO
+    👉 Servidor ejecutándose en: http://localhost:${PORT}
+    ======================================================
+    `);
+  });
+}
+
+// Exportar la aplicación para que Vercel pueda leerla (ES Modules)
+export default app;
