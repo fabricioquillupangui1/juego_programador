@@ -326,8 +326,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (modalAvatarImgEl) {
       modalAvatarImgEl.src = isCorrect 
-        ? 'assets/avatars/byte_happy.png' 
-        : 'assets/avatars/byte_sad.png';
+        ? 'byte_happy.png' 
+        : 'byte_sad.png';
     }
 
     if (avatarManager.reactToAnswer) {
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', async () => {
            }
            
            if (modalAvatarImgEl) {
-              modalAvatarImgEl.src = 'assets/avatars/byte_happy.png';
+              modalAvatarImgEl.src = 'byte_happy.png';
            }
            
            nextBtn.textContent = 'IR AL PANEL DE NIVELES 🚀';
