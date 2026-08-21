@@ -4,10 +4,10 @@
 
 // Mapeo de identificadores de avatar a sus URLs de imagen correspondientes
 const AVATAR_MAP = {
-  byte_happy: './assets/avatars/byte_happy.png',
-  byte_sad: './assets/avatars/byte_sad.png',
-  ada_happy: './assets/avatars/ada_happy.png',
-  ada_sad: './assets/avatars/ada_sad.png',
+  byte_happy: 'byte_happy.png',
+  byte_sad: 'byte_sad.png',
+  ada_happy: 'ada_happy.png',
+  ada_sad: 'ada_sad.png',
   // Fallbacks de avatares predeterminados
   panda_hacker: 'https://i.postimg.cc/JzxdvsKH/pixelcut-export.png',
   cyber_queen: 'https://i.postimg.cc/HknQWjdM/pixelcut-export-(1).png'
@@ -22,7 +22,7 @@ export function checkSession() {
   const userSessionRaw = localStorage.getItem('cz_user');
 
   if (!userSessionRaw) {
-    window.location.href = './index.html';
+    window.location.href = 'index.html';
     return null;
   }
 
@@ -31,7 +31,7 @@ export function checkSession() {
   } catch (error) {
     console.error('Error al parsear la sesión del usuario:', error);
     localStorage.removeItem('cz_user');
-    window.location.href = './index.html';
+    window.location.href = 'index.html';
     return null;
   }
 }
@@ -109,5 +109,5 @@ function createToastContainer() {
 export function logout() {
   localStorage.removeItem('cz_user');
   localStorage.removeItem('cz_token');
-  window.location.href = './index.html';
+  window.location.href = 'index.html';
 }
