@@ -5,12 +5,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Importar rutas API de la aplicación
-import authRoutes from './auth.routes.js'; // ✅ Lo busca directo al lado del server.js
+import authRoutes from './auth.routes.js';
 
-// Cargar variables de entorno desde el archivo .env
+// Cargar variables de entorno
 dotenv.config();
 
-// Obtener la ruta del directorio actual (equivalente a __dirname en ES Modules)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,42 +20,27 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos de la carpeta 'public' (HTML, CSS, JS, imágenes)
-app.use(express.static(path.join(__dirname, 'public')));
+// Servir archivos estáticos (si tus archivos HTML/JS están en la raíz, usamos __dirname directamente)
+app.use(express.static(__dirname));
 
-// === RUTAS API DE LA APLICACIÓN ===
-
-// Rutas de Autenticación (Registro, Login)
+// === RUTAS API ===
 app.use('/api/auth', authRoutes);
 
-// Ruta API de prueba para verificar que el backend responda
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     system: 'CÓDIGO ZERO: EL DESAFÍO',
-    message: 'Servidor operativo y listo para evaluar devs.',
+    message: 'Servidor operativo y listo.',
     timestamp: new Date().toISOString()
   });
 });
 
-// === RUTAS DEL FRONTEND ===
-
-// Ruta principal -> Carga la Landing Page (Presentación para la exposición)
+// Ruta principal -> Carga index.html desde la raíz
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Arrancar el servidor solo si estamos en local (no en Vercel)
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`
-    ======================================================
-    🚀 CÓDIGO ZERO: EL DESAFÍO
-    👉 Servidor ejecutándose en: http://localhost:${PORT}
-    ======================================================
-    `);
-  });
-}
-
-// Exportar la aplicación para que Vercel pueda leerla (ES Modules)
-export default app;
+// IMPORTANTE PARA RENDER: Permitir que siempre escuche el puerto en producción
+app.listen(PORT, () => {
+  console.log(`🚀 CÓDIGO ZERO ejecutándose en el puerto ${PORT}`);
+});
