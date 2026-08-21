@@ -2,9 +2,9 @@
    CÓDIGO ZERO - CONTROLADOR DE GAMEPLAY (public/js/game.js)
    ========================================================================== */
 
-import { LevelManager } from './engine/LevelManager.js';
-import { ScoreEngine } from './engine/ScoreEngine.js';
-import { AvatarManager } from './engine/AvatarManager.js';
+import { LevelManager } from 'LevelManager.js';
+import { ScoreEngine } from 'ScoreEngine.js';
+import { AvatarManager } from 'AvatarManager.js';
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // Configuración de Supabase para guardar el avance en la base de datos
