@@ -4,13 +4,13 @@
 
 const AVATAR_EXPRESSIONS = {
   byte: {
-    happy: './assets/avatars/byte_happy.png',
-    sad: './assets/avatars/byte_sad.png',
+    happy: './byte_happy.png',
+    sad: './byte_sad.png',
     fallback: 'https://i.postimg.cc/JzxdvsKH/pixelcut-export.png'
   },
   ada: {
-    happy: './assets/avatars/ada_happy.png',
-    sad: './assets/avatars/ada_sad.png',
+    happy: './ada_happy.png',
+    sad: './ada_sad.png',
     fallback: 'https://i.postimg.cc/HknQWjdM/pixelcut-export-(1).png'
   }
 };
